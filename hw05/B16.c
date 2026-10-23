@@ -1,6 +1,11 @@
 #include <stdio.h>
 
-void swapNumbers(int a, int b); //меняем числа местами
+void swapNumbers(int *a, int *b) //меняем числа местами(не обязательно, тк алгоритм сам поменяет их местами)
+{
+    int temp = *a;
+    *a = *b;
+    *b = temp;
+} 
 
 int main(int argc, char **argv)
 {
@@ -10,8 +15,9 @@ int main(int argc, char **argv)
 	int rem = 1;
 	
 	scanf("%d %d",&userInput_a, &userInput_b);
-
-	if (userInput_a< userInput_b) swapNumbers(userInput_a, userInput_b);
+	
+	if (userInput_a< userInput_b) swapNumbers(&userInput_a, &userInput_b);
+	//printf("%d %d \n",userInput_a, userInput_b);
 	
 	while(rem!=0)//алгоритм Евклида
 	{
@@ -24,12 +30,5 @@ int main(int argc, char **argv)
 	printf("%d",userInput_a);
 	
 	return 0;
-}
-
-void swapNumbers(int a, int b)
-{
-	a = a + b;
-	b = a - b;
-	a = a - b;	
 }
 
